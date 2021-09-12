@@ -14,6 +14,7 @@ export default {
         }
     },
     created() {
+        this.initVconsole()
         console.log('created start')
         if ("transactionId" in this.$route.query && "orderId") {
             // トランザクションID取得
@@ -39,7 +40,7 @@ export default {
         console.log('created end')
     },
     mounted() {
-        this.initVconsole()
+        //this.initVconsole()
         //this.$processing.show(1, "");
     },
     destroyed() {
