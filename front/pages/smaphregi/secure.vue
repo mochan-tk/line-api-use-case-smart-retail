@@ -16,6 +16,8 @@ export default {
     created() {
         this.initVconsole()
         console.log('created start')
+        console.log(this.$route.query['transactionId'])
+        console.log(this.$route.query['orderId'])
         if ("transactionId" in this.$route.query && "orderId") {
             // トランザクションID取得
             const transactionId = this.$route.query['transactionId']
