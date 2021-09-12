@@ -1,3 +1,7 @@
+<html>
+	<head>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vConsole/3.3.4/vconsole.min.js"></script>
 <script>
 (function(){
 // パラメーター取得
@@ -6,6 +10,7 @@ function getParameters()
 	var ret = null;
 
 	var url = window.location.href;
+    alert(url)
 	if (url.indexOf("?") > 0) {
 		var map = {};
 		var params = url.split("?");
@@ -18,6 +23,19 @@ function getParameters()
 		ret = map;
 	}
 
+    // vConsole Init
+    window.vConsole = new window.VConsole({
+        defaultPlugins: ['system', 'network', 'element', 'storage'],
+        maxLogNumber: 1000,
+        onReady() {
+            console.log('vConsole is ready.')
+        },
+        onClearLog() {
+            console.log('vConsole on clearLog')
+        }
+    })
+
+
 	return ret;
 }
 // 画面遷移
@@ -25,7 +43,14 @@ var params = getParameters();
 var url = "/error.html";
 if (params && ("transactionId" in params) && ("orderId" in params)) {
 	url = `/smaphregi/secure?transactionId=${params['transactionId']}&orderId=${params['orderId']}`;
+	alert(url);
 }
-window.location = url;
+//window.location = url;
 })();
 </script>
+
+	</head>
+	<body>
+		Hello
+	</body>
+</html>
