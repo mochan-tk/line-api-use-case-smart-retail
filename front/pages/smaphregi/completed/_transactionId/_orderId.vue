@@ -55,11 +55,11 @@ export default {
             return {
                 liffId: liffId,
                 successed: successed,
-            };        
-        } 
+            };
+        }
 
         // エラーメッセージ
-        let _i18n = app.i18n.messages[store.state.locale];            
+        let _i18n = app.i18n.messages[store.state.locale];
         const message = (text) => {
             app.$popup.show("error", _i18n.completed.error, text); // "LINE Pay 支払"
         };
@@ -68,7 +68,7 @@ export default {
         let intervaled = true;
         const accessTime = store.state.completed;
         if (accessTime) {
-            const interval = app.$utils.dateFormat(app.$utils.addSeconds(accessTime, 3), "yyyy/mm/dd hh:mi:ss"); 
+            const interval = app.$utils.dateFormat(app.$utils.addSeconds(accessTime, 3), "yyyy/mm/dd hh:mi:ss");
             const now = app.$utils.dateFormat(new Date(), "yyyy/mm/dd hh:mi:ss");
             if (interval > now) {
                 intervaled = false;
@@ -81,9 +81,12 @@ export default {
             store.commit("completed", completedTime);
             // LINE Pay 支払い確定処理
             try {
-                const response = await app.$smaphregi.confirmPayment(transactionId, orderId);
-                if (response && ("returnCode" in response)) {
-                    if (response.returnCode == "0000") {
+                const response = await app.$smaphregi.confirmPayPayment(transactionId, orderId);
+                console.log("kawamoto_f_1")
+                console.log(response)
+                console.log(response.data)
+                if (response.data && ("status" in response.data)) {
+                    if (response.data.status == "COMPLETED") {
                         successed = true;
                     } else {
                         // "LINE Pay 支払い確定処理に失敗しました。  Return Code: {returnCode}"
@@ -164,7 +167,7 @@ export default {
     text-shadow: 1px 1px 2px #fff;
     z-index: 1;
     width: 100%;
-    bottom: 10px;    
+    bottom: 10px;
 }
 .staff-image {
     position: absolute;
