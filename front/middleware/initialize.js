@@ -21,10 +21,10 @@ export default async (context) => {
         defaultPlugins: ['system', 'network', 'element', 'storage'],
         maxLogNumber: 1000,
         onReady() {
-          consola.log('vConsole is ready.')
+            console.log('vConsole is ready.')
         },
         onClearLog() {
-          consola.log('vConsole on clearLog')
+            console.log('vConsole on clearLog')
         }
     })
 
