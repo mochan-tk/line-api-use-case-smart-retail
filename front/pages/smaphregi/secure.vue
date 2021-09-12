@@ -34,7 +34,8 @@ export default {
         }
     },
     mounted() {
-        this.$processing.show(1, "");
+        this.initVconsole()
+        //this.$processing.show(1, "");
     },
     destroyed() {
         this.$processing.hide();
@@ -75,6 +76,21 @@ export default {
                 this.$router.push({ path: `/smaphregi/completed/${transactionId}/${orderId}` });
             });
         },
+
+          initVconsole() {
+            /* eslint no-unused-vars: 0 */
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+            const vconsole = new window.VConsole({
+              defaultPlugins: ['system', 'network', 'element', 'storage'],
+              maxLogNumber: 1000,
+              onReady() {
+                console.log('vConsole is ready.')
+              },
+              onClearLog() {
+                console.log('vConsole on clearLog')
+              }
+            })
+          },
     }
 }
 </script>
