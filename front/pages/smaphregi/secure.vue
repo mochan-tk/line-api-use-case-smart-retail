@@ -14,16 +14,17 @@ export default {
         }
     },
     created() {
+        console.log('created start')
         if ("transactionId" in this.$route.query && "orderId") {
             // トランザクションID取得
             const transactionId = this.$route.query['transactionId']
-            alert(transactionId);
+            console.log(transactionId);
             // オーダー番号取得
             const orderId = this.$route.query['orderId'];
-            alert(orderId);
+            console.log(orderId);
             // LIFF Login Redirect URL
             const completedRedirectUrl = `${location.protocol}//${location.host}/smaphregi/secure?orderId=${orderId}`;
-            alert(completedRedirectUrl);
+            console.log(completedRedirectUrl);
             // 支払完了画面へ遷移
             this.gotoCompleted(transactionId, orderId, completedRedirectUrl);
 
@@ -35,6 +36,7 @@ export default {
             // 商品履歴画面へ遷移
             this.gotoHistory(orderId, loginRedirectUrl);
         }
+        console.log('created end')
     },
     mounted() {
         this.initVconsole()
