@@ -17,10 +17,13 @@ export default {
         if ("transactionId" in this.$route.query && "orderId") {
             // トランザクションID取得
             const transactionId = this.$route.query['transactionId']
+            alert(transactionId);
             // オーダー番号取得
             const orderId = this.$route.query['orderId'];
+            alert(orderId);
             // LIFF Login Redirect URL
             const completedRedirectUrl = `${location.protocol}//${location.host}/smaphregi/secure?orderId=${orderId}`;
+            alert(completedRedirectUrl);
             // 支払完了画面へ遷移
             this.gotoCompleted(transactionId, orderId, completedRedirectUrl);
 
